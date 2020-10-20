@@ -1,6 +1,7 @@
 from cv2 import *
 
 cap = VideoCapture("film/szukaj_zielonego.webm")
+
 if not cap.isOpened():
     print("Błąd otwierania pliku")
 
@@ -17,4 +18,4 @@ while True:
         break
 
 cap.release()
-cv2.destroyAllWindows()
+destroyAllWindows()
