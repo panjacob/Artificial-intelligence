@@ -45,15 +45,22 @@ while True:
         mask = cv2.inRange(img_hsv, lower_blue, upper_blue)
         img_hsv_filtered = bitwise_and(img, img, mask=mask)
 
-        # imshow("hsv", img_hsv)
+
         imshow("mask", mask)
-        # imshow("hsv_filtered", img_hsv_filtered)
+
         pretty_window = np.concatenate((img, img_hsv, img_hsv_filtered), axis=1)
         imshow("pretty_window", pretty_window)
     else:
         break
     if waitKey(20) & 0xFF == ord('q'):
         break
+    if waitKey(20) & 0xFF == ord('x'):
+        (x,y,w,h) = selectROI(pretty_window)
+        roi = pretty_window[y:y + h, x:x + w]
+        imshow("ROI", roi)
+        cv2.imwrite("roi.png", roi)
+
+
 
 cap.release()
 destroyAllWindows()
