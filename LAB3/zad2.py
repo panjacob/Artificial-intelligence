@@ -7,8 +7,6 @@ import math
 
 cap = open_video("film/ferrari.mp4")
 
-# width = 360
-# height = 640
 width = 1280
 height = 720
 dilation_size = 5
@@ -51,7 +49,6 @@ while True:
             except:
                 pass
 
-
         if len(contours_sorted) > 1:
             contour_two = contours_sorted[1]
             # drawContours(img, [contour_two], -1, (0, 255, 0), 2)
@@ -66,29 +63,28 @@ while True:
             except:
                 pass
 
-
             if distance > 500:
-                display = 'Ale urwał!'
+                display = 'AWARYJNE HAMOWANIE'
                 color = (0, 0, 0)
             elif distance > 400:
-                display = 'Hamuj!'
+                display = 'PIK PIK PIK PIK'
                 color = (0, 0, 255)
             elif distance > 300:
-                display = 'Zwolnij'
+                display = 'PIK         PIK'
                 color = (0, 140, 255)
             elif distance > 200:
-                display = 'OK'
+                display = '     OK          '
                 color = (0, 255, 0)
             else:
                 display = ''
                 color = (0, 0, 255)
             # circle(img, (xc, yc), 15, color, -1)
-            # putText(img, str(distance)+" "+display, (xc - 30, yc),
-            #         FONT_HERSHEY_SIMPLEX, 1, color, 4)
-            putText(img, display, (xc - 30, yc),
+            putText(img, str(int((33 * 220) / distance)) + " cm", (xc - 30, yc),
+                    FONT_HERSHEY_SIMPLEX, 1, color, 4)
+            putText(img, display, (500, 50),
                     FONT_HERSHEY_SIMPLEX, 1, color, 4)
 
-            print(distance)
+            # print(distance)
 
         imshow("mask", mask)
         imshow("img", img)

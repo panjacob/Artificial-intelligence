@@ -36,9 +36,7 @@ while True:
         contours_all = findContours(mask, RETR_TREE, CHAIN_APPROX_SIMPLE)
         contours_all = imutils.grab_contours(contours_all)
         contours_sorted = sorted(contours_all, key=lambda x: cv2.contourArea(x), reverse=True)
-        # print(len(contours_sorted))
-        x1 = 0
-        y1 = 0
+
         if len(contours_sorted) > 0:
             contour_one = contours_sorted[0]
             M = moments(contour_one)
@@ -55,28 +53,12 @@ while True:
             circle(img, (x2, y2), 7, (255, 255, 255), -1)
             drawContours(img, [contour_two], -1, (0, 255, 0), 2)
 
-            distance = int(math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)))
-            xc = int((x1 + x2) / 2)
-            yc = int((y1 + y2) / 2)
+            deltay = y1 - y2
+            if deltay < 0:
+                deltay = deltay * (-1)
 
-            if distance < 100:
-                mask_turbo = morphologyEx(mask, cv2.MORPH_CLOSE, kernel_turbo)
-                contours_all_turbo = findContours(mask_turbo, RETR_TREE, CHAIN_APPROX_SIMPLE)
-                contours_all_turbo = imutils.grab_contours(contours_all_turbo)
-                contours_sorted_turbo = sorted(contours_all_turbo, key=lambda x: contourArea(x), reverse=True)
-                if len(contours_sorted_turbo) > 0:
-                    drawContours(img, [contours_sorted_turbo[0]], -1, (0, 0, 255), 2)
-
-
-                color = (0, 255, 0)
-            elif distance < 300:
-                color = (255, 0, 0)
-            else:
-                color = (0, 0, 255)
-            circle(img, (xc, yc), 15, color, -1)
-            putText(img, str(distance), (xc - 20, yc - 20),
-                    FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-            # print(distance)
+            if deltay < 30:
+                line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
         # imshow("mask", mask)
         imshow("img", img)
@@ -84,7 +66,7 @@ while True:
         # imshow("pretty_window", pretty_window)
     else:
         break
-    if waitKey(5) & 0xFF == ord('q'):
+    if waitKey(10) & 0xFF == ord('q'):
         break
 
 cap.release()
