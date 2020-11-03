@@ -7,8 +7,6 @@ import math
 
 cap = open_video("film/lab3.webm")
 
-# width = 360
-# height = 640
 width = 1280
 height = 720
 dilation_size = 5
@@ -60,7 +58,6 @@ while True:
             if deltay < 30:
                 line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-        # imshow("mask", mask)
         imshow("img", img)
         # pretty_window = np.concatenate((img, img_blur, img_hsv), axis=1)
         # imshow("pretty_window", pretty_window)
