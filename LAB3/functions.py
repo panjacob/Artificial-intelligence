@@ -1,6 +1,7 @@
 from cv2 import *
 import numpy as np
 
+
 def nothing():
     pass
 
