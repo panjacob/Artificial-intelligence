@@ -55,7 +55,9 @@ while True:
     if waitKey(20) & 0xFF == ord('q'):
         break
     if waitKey(20) & 0xFF == ord('x'):
-        (x,y,w,h) = selectROI(pretty_window)
+        roi = selectROI(pretty_window)
+        print(roi)
+        (x, y, w, h) = roi
         roi = pretty_window[y:y + h, x:x + w]
         imshow("ROI", roi)
         cv2.imwrite("roi.png", roi)
