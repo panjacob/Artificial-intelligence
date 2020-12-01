@@ -8,7 +8,7 @@ results_sphere_f_rand = []
 results_mc_cormick_f_hillclimb = []
 results_booth_f_hillclimb = []
 results_sphere_f_hillclimb = []
-for n in range(0, 200):
+for n in range(0, 20):
     results_mc_cormick_f_hillclimb.append(
         hillclimb(function=mc_cormick_f, domain_x=(-1.5, 4), domain_y=(-3, 4), attempts=100000,
                   accuracy_float_points_x=5, accuracy_float_points_y=5))
