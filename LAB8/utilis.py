@@ -11,7 +11,6 @@ def binary_to_gray(binary):
     for i in range(1, len(binary)):
         previous = binary[i - 1]
         current = binary[i]
-        # print(previous, current, " = ", xor(current, previous))
         result = xor(current, previous)
         gray.append(result)
 
@@ -24,7 +23,6 @@ def gray_to_binary(gray):
     for i in range(1, len(gray)):
         previous = binary[i - 1]
         current = gray[i]
-        # print(previous, current, " = ", xor(current, previous))
         result = xor(current, previous)
         binary.append(result)
 
@@ -46,7 +44,6 @@ def binary_to_10(binary):
     result = 0
     for i, bit in enumerate(reversed(binary)):
         result += bit * int(pow(2, i))
-        # print(bit, ' * ', pow(2, i) , ' = ', bit * int(pow(2, i)))
     return result
 
 
@@ -61,11 +58,30 @@ def binary_fill_zeros(binary, size=128):
     size = int(size / 2)
     while len(binary) != size:
         binary = '0' + binary
-        # print(binary)
     return binary
 
 
-def int_to_bin(x, size=128):
+def int_to_bin(x, accuracy, size=128):
+    x = int(x * pow(10, accuracy))
     binary = str(bin(x))[2:]
-    # print(binary, ' -> ', binary_fill_zeros(binary, size))
     return binary_fill_zeros(binary, size)
+
+
+def normal_to_plusminus(x, size, accuracy):
+    max_val = pow(2, size / 2) / pow(10, accuracy)
+    middle = max_val / 2
+    if x < middle:
+        if x == 0:
+            return 0
+        return -1 * x
+    else:
+        return x - middle
+
+
+def plusminus_to_normal(x, size, accuracy):
+    max_val = pow(2, size / 2) / pow(10, accuracy)
+    middle = max_val / 2
+    if x < 0:
+        return -1 * x
+    else:
+        return x + middle
