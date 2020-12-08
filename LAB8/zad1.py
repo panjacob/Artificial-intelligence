@@ -1,4 +1,4 @@
-from LAB8.evolution import generate_genotype, genotype_to_xy, xy_to_genotype, generate_population, fitness, monte_carlo
+from LAB8.evolution import generate_genotype, genotype_to_xy, xy_to_genotype, generate_population, fitness, find_random_alg
 import LAB8.functions as f
 import matplotlib.pyplot as plt
 
@@ -22,7 +22,7 @@ def find_random():
     accuracy_x = 2
     accuracy_y = 2
     size = 20
-    genotype, results = monte_carlo(f.himmelblau_f, 10000000, size, accuracy_x, accuracy_y)
+    genotype, results = find_random_alg(f.himmelblau_f, 100000, size, accuracy_x, accuracy_y)
     print(genotype_to_xy(genotype, size, accuracy_x, accuracy_y))
     plt.plot(results)
     plt.title('random genotype himmelblau attempts=10.000.000')
