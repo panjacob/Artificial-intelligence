@@ -1,5 +1,5 @@
 from LAB9.evolution import generate_genotype, genotype_to_xy, xy_to_genotype, generate_population, cross, \
-    find_random_alg, mutate, selection, fitness_population
+    find_random_alg, mutate, selection_tournament, fitness_population
 import LAB9.functions as f
 import matplotlib.pyplot as plt
 
@@ -53,9 +53,9 @@ def test_selection():
 
     for i in range(0, 100):
         if i == 0:
-            new_population = selection(population, f.himmelblau_f)
+            new_population = selection_tournament(population, f.himmelblau_f)
         else:
-            new_population = selection(new_population, f.himmelblau_f)
+            new_population = selection_tournament(new_population, f.himmelblau_f)
         print(i, fitness_population(f.himmelblau_f, new_population))
 
 
@@ -63,4 +63,4 @@ def test_selection():
 # find_random()
 # test_cross()
 # test_mutation()
-# test_selection()
+test_selection()
