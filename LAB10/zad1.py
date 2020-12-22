@@ -22,7 +22,7 @@ def genetic(size_of_population, size_arr, function, mutate_probability, elite_co
     return elite[0], plot
 
 
-solution, plot = genetic(size_of_population=1000, size_arr=20, function=f.himmelblau_f, mutate_probability=1,
+solution, plot = genetic(size_of_population=100, size_arr=20, function=f.himmelblau_f, mutate_probability=1,
                          elite_count=3,
                          iterations=1000)
 
